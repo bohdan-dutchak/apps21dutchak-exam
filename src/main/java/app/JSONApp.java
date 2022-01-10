@@ -14,11 +14,14 @@ import json.JsonBoolean;
  */
 public class JSONApp {
     public static void main(String[] args) {
-        final int magicTwo = 2, magicThree = 3, magicFour = 4;
-        Json jYear = new JsonNumber(magicTwo);
+        final int MAGICTWO = 2, MAGICTHREE = 3, MAGICFOUR = 4;
+        Json jYear = new JsonNumber(MAGICTWO);
         print(jYear); // 2
 
-        Json jMarks = new JsonArray(new JsonNumber(magicThree), new JsonNumber(magicFour));
+        Json jMarks = new JsonArray(
+                new JsonNumber(MAGICTHREE),
+                new JsonNumber(MAGICFOUR)
+        );
         print(jMarks); // [3, 4]
 
         JsonPair name = new JsonPair("name", new JsonString("Andrii"));
@@ -40,22 +43,23 @@ public class JSONApp {
     }
 
     public static JsonObject sessionResult() {
+        final int MARKTWO = 2, MARKTHREE = 3, MARKFIVE = 5;
         JsonObject jsonObject = new JsonObject();
         jsonObject.add(new JsonPair("name", new JsonString("Andrii")));
         jsonObject.add(new JsonPair("surname", new JsonString("Rodionov")));
-        jsonObject.add(new JsonPair("year", new JsonNumber(2)));
+        jsonObject.add(new JsonPair("year", new JsonNumber(MARKTWO)));
         JsonArray jsna = new JsonArray(
                 new JsonObject(
                         new JsonPair("course", new JsonString("OOP")),
-                        new JsonPair("mark", new JsonNumber(3)),
+                        new JsonPair("mark", new JsonNumber(MARKTHREE)),
                         new JsonPair("passed", new JsonBoolean(true))),
                 new JsonObject(
                         new JsonPair("course", new JsonString("English")),
-                        new JsonPair("mark", new JsonNumber(5)),
+                        new JsonPair("mark", new JsonNumber(MARKFIVE)),
                         new JsonPair("passed", new JsonBoolean(true))),
                 new JsonObject(
                         new JsonPair("course", new JsonString("Math")),
-                        new JsonPair("mark", new JsonNumber(2)),
+                        new JsonPair("mark", new JsonNumber(MARKTWO)),
                         new JsonPair("passed", new JsonBoolean(false)))
         );
         jsonObject.add(new JsonPair("exams", jsna));
