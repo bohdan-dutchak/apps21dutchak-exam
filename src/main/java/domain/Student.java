@@ -1,9 +1,13 @@
 package domain;
 
-import json.*;
-
-import java.util.ArrayList;
+import json.JsonPair;
+import json.JsonNumber;
+import json.JsonArray;
+import json.JsonObject;
+import json.JsonString;
+import json.JsonBoolean;
 import java.util.Arrays;
+import json.Tuple;
 import java.util.List;
 
 /**
@@ -13,19 +17,22 @@ public class Student extends BasicStudent {
 
     private List<Tuple<String, Integer>> exams;
 
-    public Student(String name, String surname, Integer year, Tuple<String, Integer>... exams) {
-        super(name, surname, year);
-        this.exams = Arrays.asList(exams);
+    public Student(String n, String s, Integer y, Tuple<String, Integer>... e) {
+        super(n, s, y);
+        this.exams = Arrays.asList(e);
     }
 
     @Override
     public JsonObject toJsonObject() {
         JsonObject[] jsonObjects = new JsonObject[this.exams.size()];
-        for (int i = 0; i < this.exams.size(); i++){
+        for (int i = 0; i < this.exams.size(); i++) {
             jsonObjects[i] = new JsonObject(
-                    new JsonPair("course", new JsonString(this.exams.get(i).key)),
-                    new JsonPair("mark", new JsonNumber(this.exams.get(i).value)),
-                    new JsonPair("passed", new JsonBoolean(didPass(this.exams.get(i).value)))
+                    new JsonPair("course",
+                            new JsonString(this.exams.get(i).key)),
+                    new JsonPair("mark",
+                            new JsonNumber(this.exams.get(i).value)),
+                    new JsonPair("passed",
+                            new JsonBoolean(didPass(this.exams.get(i).value)))
             );
         }
 
@@ -35,7 +42,7 @@ public class Student extends BasicStudent {
                 new JsonPair("exams", new JsonArray(jsonObjects)));
     }
 
-    boolean didPass(Integer mark){
-        return mark>2;
+    boolean didPass(Integer mark) {
+        return mark > 2;
     }
 }

@@ -24,12 +24,12 @@ public class JsonObject extends Json {
     public String toJson() {
         String result = "{";
         for (JsonPair jsp : this.objects) {
-             result += "'" + jsp.key + "': " + jsp.value.toJson() + ", ";
+            result += "'" + jsp.key + "': " + jsp.value.toJson() + ", ";
         }
-        if(!this.objects.isEmpty()) {
+        if (!this.objects.isEmpty()) {
             result = result.substring(0, result.length() - 2);
         }
-        result+="}";
+        result += "}";
         return result;
     }
 
@@ -38,8 +38,8 @@ public class JsonObject extends Json {
     }
 
     public Json find(String name) {
-        for(JsonPair jsp : objects){
-            if(jsp.key.equals(name)){
+        for (JsonPair jsp : objects) {
+            if (jsp.key.equals(name)) {
                 return jsp.value;
             }
         }
@@ -49,9 +49,9 @@ public class JsonObject extends Json {
     public JsonObject projection(String... names) {
         ArrayList<String> keys = new ArrayList<>(Arrays.asList(names));
         JsonObject result = new JsonObject();
-        for (String key : keys){
-            for (JsonPair jsp : this.objects){
-                if (key.equals(jsp.key)){
+        for (String key : keys) {
+            for (JsonPair jsp : this.objects) {
+                if (key.equals(jsp.key)) {
                     result.add(jsp);
                 }
             }
@@ -59,7 +59,7 @@ public class JsonObject extends Json {
         return result;
     }
 
-    public boolean contains(String name){
+    public boolean contains(String name) {
         return this.projection(name).objects.size() != 0;
     }
 }
